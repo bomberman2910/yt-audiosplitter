@@ -43,7 +43,7 @@ internal class Program
         var totalLength = GetTotalLength(mp3Filename);
         parsedLines[^1].Length = totalLength - parsedLines[^1].Timestamp;
 
-        var albumName = GetTitle(mp3Filename);
+        var albumName = GetTitle(mp3Filename).Replace("\"", "\\\"");
 
         var totalTracks = parsedLines.Count;
 
@@ -107,6 +107,9 @@ internal class Program
                 title = string.Join(' ', rest.Split(' ')[..^1]);
                 break;
         }
+
+        artist = artist.Replace("\"", "\\\"");
+        title = title.Replace("\"", "\\\"");
     }
 
     private static void ValidateArguments(string[] args)
