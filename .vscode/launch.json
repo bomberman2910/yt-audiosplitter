@@ -1,0 +1,29 @@
+{
+    // Verwendet IntelliSense zum Ermitteln möglicher Attribute.
+    // Zeigen Sie auf vorhandene Attribute, um die zugehörigen Beschreibungen anzuzeigen.
+    // Weitere Informationen finden Sie unter https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // IntelliSense verwenden, um herauszufinden, welche Attribute für das C#-Debuggen vorhanden sind
+            // Hover für die Beschreibung der vorhandenen Attribute verwenden
+            // Weitere Informationen finden Sie unter https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+            "name": ".NET Core Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            // Wenn Sie Zielframeworks geändert haben, stellen Sie sicher, dass Sie den Programmpfad aktualisieren.
+            "program": "${workspaceFolder}/bin/Debug/net7.0/linux-x64/yt-audiosplitter.dll",
+            "args": ["/mnt/bigdata/music/Trance Classics | Golden Age Mix [1998-2002]/input", "sat"],
+            "cwd": "${workspaceFolder}",
+            // Weitere Informationen zum Feld \"Konsole\" finden Sie unter https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ]
+}

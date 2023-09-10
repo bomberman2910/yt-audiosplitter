@@ -1,0 +1,4 @@
+- [x] add timestamp file format specifier argument
+- [x] use ffprobe to detect the length of the mp3
+- [x] search for a way to add id3 information to split mp3s (found it: https://gist.github.com/eyecatchup/0757b3d8b989fe433979db2ea7d95a01)
+  - reading the title works better with ffprobe though
