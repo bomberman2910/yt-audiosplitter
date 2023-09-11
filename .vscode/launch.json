@@ -14,7 +14,7 @@
             "preLaunchTask": "build",
             // Wenn Sie Zielframeworks geändert haben, stellen Sie sicher, dass Sie den Programmpfad aktualisieren.
             "program": "${workspaceFolder}/bin/Debug/net7.0/linux-x64/yt-audiosplitter.dll",
-            "args": ["/mnt/bigdata/music/Trance Classics | Golden Age Mix [1998-2002]/input", "sat"],
+            "args": ["/mnt/bigdata/music/Psytrance Mix March 2018 - Astrix, Liquid Soul, Coming Soon, Waio, Berg, Vibe Tribe/Psytrance Mix March 2018 - Astrix, Liquid Soul, Coming Soon, Waio, Berg, Vibe Tribe", "sat"],
             "cwd": "${workspaceFolder}",
             // Weitere Informationen zum Feld \"Konsole\" finden Sie unter https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
