@@ -43,7 +43,7 @@ internal class Program
         var totalLength = GetTotalLength(mp3Filename);
         parsedLines[^1].Length = totalLength - parsedLines[^1].Timestamp;
 
-        var albumName = GetTitle(mp3Filename).Replace("\"", "\\\"");
+        var albumName = GetTitle(mp3Filename).Replace("\"", string.Empty);
 
         var totalTracks = parsedLines.Count;
 
@@ -52,7 +52,7 @@ internal class Program
             Console.WriteLine($"[INF] Processing Track {parsedLine.TrackNumber}: {parsedLine.Title} by {parsedLine.Artist}");
             var ffmpeg = new Process();
             ffmpeg.StartInfo.FileName = "ffmpeg";
-            ffmpeg.StartInfo.Arguments = $"-ss {parsedLine.Timestamp:HH:mm:ss}.0 -t {parsedLine.Length:hh\\:mm\\:ss}.0 -i \"{mp3Filename}\" -metadata title=\"{parsedLine.Title}\" -metadata artist=\"{parsedLine.Artist}\" -metadata album=\"{albumName}\" -metadata album_artist=\"Various Artists\" -metadata track=\"{parsedLine.TrackNumber}/{totalTracks}\" -acodec copy -y -loglevel quiet \"{parsedLine.TrackNumber:D2}. {parsedLine.Artist} - {parsedLine.Title}.mp3\"";
+            ffmpeg.StartInfo.Arguments = $"-ss {parsedLine.Timestamp:HH:mm:ss}.0 -t {parsedLine.Length:hh\\:mm\\:ss}.0 -i \"{mp3Filename}\" -metadata title=\"{parsedLine.Title}\" -metadata artist=\"{parsedLine.Artist}\" -metadata album=\"{albumName}\" -metadata album_artist=\"Various Artists\" -metadata track=\"{parsedLine.TrackNumber}/{totalTracks}\" -acodec copy -y -loglevel error \"{parsedLine.TrackNumber:D2}. {parsedLine.Artist} - {parsedLine.Title}.mp3\"";
             ffmpeg.StartInfo.RedirectStandardOutput = true;
             ffmpeg.StartInfo.RedirectStandardError = true;
             ffmpeg.Start();
