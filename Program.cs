@@ -47,7 +47,7 @@ internal class Program
 
         var totalTracks = parsedLines.Count;
 
-        Parallel.ForEach(parsedLines, new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount }, parsedLine =>
+        foreach(var parsedLine in parsedLines)
         {
             Console.WriteLine($"[INF] Processing Track {parsedLine.TrackNumber}: {parsedLine.Title} by {parsedLine.Artist}");
             var ffmpeg = new Process();
@@ -59,7 +59,7 @@ internal class Program
             ffmpeg.WaitForExit();
             if(ffmpeg.ExitCode != 0)
                 Console.WriteLine($"[ERR] Error while processing track {parsedLine.TrackNumber}: {ffmpeg.StandardError.ReadToEnd()}");
-        });
+        };
     }
 
     private static string GetFileOrderFromArguments(string[] args)
@@ -83,26 +83,26 @@ internal class Program
         switch (fileOrder)
         {
             case TimestampTitleArtist:
-                artist = line.Split('-', StringSplitOptions.TrimEntries)[1];
-                rest = line.Split('-', StringSplitOptions.TrimEntries)[0];
+                artist = line.Split(" - ", 2, StringSplitOptions.TrimEntries)[1];
+                rest = line.Split(" - ", 2, StringSplitOptions.TrimEntries)[0];
                 timestamp = rest.Split(' ', 2)[0];
                 title = rest.Split(' ', 2)[1];
                 break;
             case TimestampArtistTitle:
-                title = line.Split('-', StringSplitOptions.TrimEntries)[1];
-                rest = line.Split('-', StringSplitOptions.TrimEntries)[0];
+                title = line.Split(" - ", 2, StringSplitOptions.TrimEntries)[1];
+                rest = line.Split(" - ", 2, StringSplitOptions.TrimEntries)[0];
                 timestamp = rest.Split(' ', 2)[0];
                 artist = rest.Split(' ', 2)[1];
                 break;
             case TitleArtistTimestamp:
-                title = line.Split('-', StringSplitOptions.TrimEntries)[0];
-                rest = line.Split('-', StringSplitOptions.TrimEntries)[1];
+                title = line.Split(" - ", 2, StringSplitOptions.TrimEntries)[0];
+                rest = line.Split(" - ", 2, StringSplitOptions.TrimEntries)[1];
                 timestamp = rest.Split(' ')[^1];
                 artist = string.Join(' ', rest.Split(' ')[..^1]);
                 break;
             case ArtistTitleTimestamp:
-                artist = line.Split('-', StringSplitOptions.TrimEntries)[0];
-                rest = line.Split('-', StringSplitOptions.TrimEntries)[1];
+                artist = line.Split(" - ", 2, StringSplitOptions.TrimEntries)[0];
+                rest = line.Split(" - ", 2, StringSplitOptions.TrimEntries)[1];
                 timestamp = rest.Split(' ')[^1];
                 title = string.Join(' ', rest.Split(' ')[..^1]);
                 break;
